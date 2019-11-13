@@ -1,20 +1,20 @@
 //
 //  ___TABLE___ListForm.swift
-//  4D for iOS Demo
+//  ___PACKAGENAME___
 //
-//  Created by David Azancot on Thu, 12 Apr 2018 09:39:13 GMT
-//  ©2018 My Company All rights reserved
+//  Created by ___FULLUSERNAME___ on ___DATE___
+//  ___COPYRIGHT___
 
 import UIKit
 import QMobileUI
 
-/// Generated list form for ___TABLE___ table.
+/// A progress bar.
 @IBDesignable
 class ___TABLE___CustomProgressBarList: UIView {
 
     @IBInspectable var percent: CGFloat = 0.90
-    @IBInspectable var barColor: UIColor = UIColor.blue
-    @IBInspectable var bgColor: UIColor = UIColor.clear
+    @IBInspectable var barColor: UIColor = .blue
+    @IBInspectable var bgColor: UIColor = .clear
     @IBInspectable var thickness: CGFloat = 20
     @IBInspectable var bgThickness: CGFloat = 20
     @IBInspectable var isHalfBar: Bool = false
@@ -41,8 +41,8 @@ class ___TABLE___CustomProgressBarList: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        let X = self.bounds.midX
-        let Y = self.bounds.midY
+        let x = self.bounds.midX // swiftlint:disable:this identifier_name
+        let y = self.bounds.midY // swiftlint:disable:this identifier_name
         var strokeStart: CGFloat = 0
         var strokeEnd: CGFloat = percent
         let degrees = 270.0
@@ -50,7 +50,7 @@ class ___TABLE___CustomProgressBarList: UIView {
 
         layer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)
         var size = self.frame.size.width
-        if self.frame.size.height < size {
+        if size > self.frame.size.height {
             size = self.frame.size.height
         }
         size -= 0
@@ -61,13 +61,39 @@ class ___TABLE___CustomProgressBarList: UIView {
             let radians = CGFloat(degrees * Double.pi / 180)
             layer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)
         }
-        let path = UIBezierPath(ovalIn: CGRect(x: (X - (68/2)), y: (Y - (68/2)), width: 68, height: 68)).cgPath
-        self.addOval(self.bgThickness, path: path, strokeStart: strokeStart, strokeEnd: 1.0, strokeColor: self.bgColor, fillColor: UIColor.clear, shadowRadius: 0, shadowOpacity: 0, shadowOffsset: CGSize.zero)
-        self.addOval2(self.thickness, path: path, strokeStart: strokeStart, strokeEnd: strokeEnd, strokeColor: self.barColor, fillColor: UIColor.clear, shadowRadius: 0, shadowOpacity: 0, shadowOffsset: CGSize.zero)
+        let ovalSize: CGFloat = 68.0
+        let ovalRect = CGRect(x: x - (ovalSize/2), y: y - (ovalSize/2), width: ovalSize, height: ovalSize)
+        let path = UIBezierPath(ovalIn: ovalRect).cgPath
+        self.addOval(self.bgThickness,
+                     path: path,
+                     strokeStart: strokeStart,
+                     strokeEnd: 1.0,
+                     strokeColor: self.bgColor,
+                     fillColor: .clear,
+                     shadowRadius: 0,
+                     shadowOpacity: 0,
+                     shadowOffsset: .zero)
+        self.addOval2(self.thickness,
+                      path: path,
+                      strokeStart: strokeStart,
+                      strokeEnd: strokeEnd,
+                      strokeColor: self.barColor,
+                      fillColor: .clear,
+                      shadowRadius: 0,
+                      shadowOpacity: 0,
+                      shadowOffsset: .zero)
     }
 
     // swiftlint:disable:next function_parameter_count
-    func addOval(_ lineWidth: CGFloat, path: CGPath, strokeStart: CGFloat, strokeEnd: CGFloat, strokeColor: UIColor, fillColor: UIColor, shadowRadius: CGFloat, shadowOpacity: Float, shadowOffsset: CGSize) {
+    func addOval(_ lineWidth: CGFloat,
+                 path: CGPath,
+                 strokeStart: CGFloat,
+                 strokeEnd: CGFloat,
+                 strokeColor: UIColor,
+                 fillColor: UIColor,
+                 shadowRadius: CGFloat,
+                 shadowOpacity: Float,
+                 shadowOffsset: CGSize) {
         arc.lineWidth = lineWidth
         arc.path = path
         arc.strokeStart = strokeStart
@@ -84,7 +110,15 @@ class ___TABLE___CustomProgressBarList: UIView {
     }
 
     // swiftlint:disable:next function_parameter_count
-    func addOval2(_ lineWidth: CGFloat, path: CGPath, strokeStart: CGFloat, strokeEnd: CGFloat, strokeColor: UIColor, fillColor: UIColor, shadowRadius: CGFloat, shadowOpacity: Float, shadowOffsset: CGSize) {
+    func addOval2(_ lineWidth: CGFloat,
+                  path: CGPath,
+                  strokeStart: CGFloat,
+                  strokeEnd: CGFloat,
+                  strokeColor: UIColor,
+                  fillColor: UIColor,
+                  shadowRadius: CGFloat,
+                  shadowOpacity: Float,
+                  shadowOffsset: CGSize) {
         arc2.lineWidth = lineWidth
         arc2.path = path
         arc2.strokeStart = strokeStart
@@ -100,6 +134,7 @@ class ___TABLE___CustomProgressBarList: UIView {
     }
 }
 
+/// Generated list form for ___TABLE___ table.
 class ___TABLE___ListForm: ListForm___LISTFORMTYPE___ {
 
     // Do not edit name or override tableName
